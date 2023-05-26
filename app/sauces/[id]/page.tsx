@@ -24,10 +24,6 @@ const SaucePage: ({}: Params) => Promise<{}> = async ({ params }) => {
   const getSauce: () => Promise<Sauce> = async () => {
     const res = await fetch(
       `${process.env.REACT_APP_SERVER_URL}/api-v1/sauces/${params.id}`,
-      {
-        // needs to be removed (or changed) before final publication -- only currently implemented so that we're not constantly getting cached results when trying to test changes
-        next: { revalidate: 0 },
-      }
     );
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary
