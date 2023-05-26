@@ -1,5 +1,4 @@
 import Navbar from '../../navbar';
-import style from './page.module.css';
 
 type Episode = {
   _id: string;
@@ -34,10 +33,6 @@ const EpisodePage: ({}: Params) => Promise<{}> = async ({ params }) => {
   const getEpisode: () => Promise<Episode> = async () => {
     const res = await fetch(
       `${process.env.REACT_APP_SERVER_URL}/api-v1/episodes/${params.id}`,
-      {
-        // needs to be removed (or changed) before final publication -- only currently implemented so that we're not constantly getting cached results when trying to test changes
-        next: { revalidate: 0 },
-      }
     );
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary
